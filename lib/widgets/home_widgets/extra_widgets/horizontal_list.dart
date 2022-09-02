@@ -40,13 +40,9 @@ class _HorizontalListState extends State<HorizontalList> {
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               if (state is NewsInitial) {
-                return const CircularProgressIndicator(
-                  color: Colors.blue,
-                );
+                return _loadingApi(context);
               } else if (state is NewsLoading) {
-                return const CircularProgressIndicator(
-                  color: Colors.blue,
-                );
+                return _loadingApi(context);
               } else if (state is NewsLoaded) {
                 return _buildCard(context, state.newsResponse);
               } else if (state is NewsError) {
@@ -57,6 +53,15 @@ class _HorizontalListState extends State<HorizontalList> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _loadingApi(BuildContext context) {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 120),
+        child: CircularProgressIndicator(color: Colors.blue),
       ),
     );
   }
