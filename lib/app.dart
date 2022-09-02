@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, depend_on_referenced_packages
 
 import 'package:flutt_news/bloc/network/network_bloc.dart';
 import 'package:flutt_news/widgets/home.dart';

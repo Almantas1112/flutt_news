@@ -1,7 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages, no_leading_underscores_for_local_identifiers
+
 import 'package:bloc/bloc.dart';
 import 'package:flutt_news/models/newsResponse.dart';
 import 'package:flutt_news/resources/api_repository.dart';
-import 'package:flutt_news/services/news_services_api.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
@@ -21,7 +22,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           emit(NewsError(mList.error));
         }
       } on NetworkError {
-        emit(NewsError("Failed to fetch data!"));
+        emit(const NewsError("Failed to fetch data!"));
       }
     });
   }

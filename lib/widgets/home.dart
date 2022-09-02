@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/horizontal_list.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/search_bar.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/vertical_list.dart';

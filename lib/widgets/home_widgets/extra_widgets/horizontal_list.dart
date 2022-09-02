@@ -1,6 +1,7 @@
+// ignore_for_file: depend_on_referenced_packages, sized_box_for_whitespace, library_private_types_in_public_api
+
 import 'package:flutt_news/bloc/news_bloc/bloc/news_bloc.dart';
 import 'package:flutt_news/models/newsResponse.dart';
-import 'package:flutt_news/services/news_services_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -74,10 +75,36 @@ class _HorizontalListState extends State<HorizontalList> {
               children: <Widget>[
                 Container(
                   height: 160,
-                  // child: Text('${model.articles![index].author}'),
-                  child: Image.network(
-                    '${model.articles![index].urlToImage}',
-                    fit: BoxFit.fitHeight,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            '${model.articles![index].urlToImage}'),
+                        fit: BoxFit.cover),
+                  ),
+                  child: Card(
+                    color: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        debugPrint(
+                            'Card tapped: ${model.articles![index].title}');
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 120),
+                        alignment: Alignment.bottomLeft,
+                        child: SizedBox(
+                          width: 300,
+                          height: 160,
+                          child: Text(
+                            '${model.articles![index].title}',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -90,69 +117,4 @@ class _HorizontalListState extends State<HorizontalList> {
       ),
     );
   }
-
-  // Widget build(BuildContext context) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(vertical: 180.0),
-  //     child: Container(
-  //       height: 150,
-  //       child: ListView(
-  //         scrollDirection: Axis.horizontal,
-  //         children: <Widget>[
-  //           const SizedBox(
-  //             width: 25,
-  //           ),
-  //           Container(
-  //             width: 200,
-  //             color: Colors.purple[600],
-  //             child: const Center(
-  //                 child: Text(
-  //               'Item 1',
-  //               style: TextStyle(fontSize: 18, color: Colors.white),
-  //             )),
-  //           ),
-  //           const SizedBox(
-  //             width: 25,
-  //           ),
-  //           Container(
-  //             width: 200,
-  //             color: Colors.purple[500],
-  //             child: const Center(
-  //                 child: Text(
-  //               'Item 2',
-  //               style: TextStyle(fontSize: 18, color: Colors.white),
-  //             )),
-  //           ),
-  //           const SizedBox(
-  //             width: 25,
-  //           ),
-  //           Container(
-  //             width: 200,
-  //             color: Colors.purple[400],
-  //             child: const Center(
-  //                 child: Text(
-  //               'Item 3',
-  //               style: TextStyle(fontSize: 18, color: Colors.white),
-  //             )),
-  //           ),
-  //           const SizedBox(
-  //             width: 25,
-  //           ),
-  //           Container(
-  //             width: 200,
-  //             color: Colors.purple[300],
-  //             child: const Center(
-  //                 child: Text(
-  //               'Item 4',
-  //               style: TextStyle(fontSize: 18, color: Colors.white),
-  //             )),
-  //           ),
-  //           const SizedBox(
-  //             width: 25,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }
