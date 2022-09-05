@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:flutt_news/widgets/home_widgets/extra_widgets/change_theme.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/horizontal_list.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/search_bar.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/vertical_list.dart';
@@ -30,9 +31,10 @@ class _HomeState extends State<Home> {
                 children: [
                   Column(
                     children: const [
+                      ChangeTheme(),
                       Center(
                         child: Padding(
-                          padding: EdgeInsets.all(50.0),
+                          padding: EdgeInsets.symmetric(vertical: 0.0),
                           child: Text(
                             'News',
                             style: TextStyle(

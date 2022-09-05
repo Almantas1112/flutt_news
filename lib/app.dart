@@ -7,20 +7,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class App extends StatelessWidget {
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.light);
+
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: BlocProvider(
-        create: (context) => NetworkBloc()..add(NetworkObserve()),
-        child: const Home(),
-      ),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(primarySwatch: Colors.amber),
+          darkTheme: ThemeData.dark(),
+          themeMode: currentMode,
+          home: BlocProvider(
+            create: (context) => NetworkBloc()..add(NetworkObserve()),
+            child: const Home(),
+          ),
+        );
+      },
     );
   }
 }

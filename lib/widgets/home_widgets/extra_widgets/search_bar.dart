@@ -10,20 +10,31 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
+  final searchTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchTextController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 390.0, horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
+        children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextField(
+              controller: searchTextController,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 hintText: 'Enter article keyword',
-                suffixIcon: Icon(Icons.search),
+                suffixIcon: IconButton(
+                    onPressed: () => debugPrint(searchTextController.text),
+                    icon: const Icon(Icons.search)),
                 //TODO: BUTTON PRESS FUNCTION IMPLEMENT
               ),
             ),

@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, sized_box_for_whitespace, library_private_types_in_public_api
 
-import 'package:flutt_news/bloc/news_bloc/bloc/news_bloc.dart';
+import 'package:flutt_news/bloc/news_bloc/news_bloc.dart';
 import 'package:flutt_news/models/newsResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,8 +82,11 @@ class _HorizontalListState extends State<HorizontalList> {
                   height: 160,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
-                            '${model.articles![index].urlToImage}'),
+                        image: model.articles![index].urlToImage != null
+                            ? NetworkImage(
+                                '${model.articles![index].urlToImage}')
+                            : const AssetImage('images/default.png')
+                                as ImageProvider,
                         fit: BoxFit.cover),
                   ),
                   child: Card(
@@ -94,6 +97,7 @@ class _HorizontalListState extends State<HorizontalList> {
                       onTap: () {
                         debugPrint(
                             'Card tapped: ${model.articles![index].title}');
+                        //TODO: Push to see full article
                       },
                       child: Container(
                         margin: const EdgeInsets.only(top: 120),
