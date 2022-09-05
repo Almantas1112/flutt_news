@@ -3,7 +3,6 @@
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/change_theme.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/horizontal_list.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/search_bar.dart';
-import 'package:flutt_news/widgets/home_widgets/extra_widgets/vertical_list.dart';
 import 'package:flutt_news/widgets/home_widgets/no_internet_widgets/no_internet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,7 +72,6 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   const SearchBar(),
-                  const VerticalList(),
                 ],
               ),
             );

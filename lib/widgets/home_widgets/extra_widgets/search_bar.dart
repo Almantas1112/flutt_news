@@ -1,45 +1,76 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:flutt_news/widgets/home_widgets/extra_widgets/vertical_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/search_bloc/search_for_news_bloc.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
+  static final searchTextController = TextEditingController();
 
   @override
   _SearchBarState createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBar> {
-  final searchTextController = TextEditingController();
+  // final SearchForNewsBloc _searchBloc = SearchForNewsBloc();
 
-  @override
-  void dispose() {
-    searchTextController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   ApiSearchProvider().fetchSearchQuery();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   SearchBar.searchTextController
+  //       .addListener(() => SearchBar.searchTextController.text);
+  // }
+
+  // void _printLatestValue() {
+  //   print('Latest values is: ${SearchBar.searchTextController.text}');
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 390.0, horizontal: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: TextField(
-              controller: searchTextController,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintText: 'Enter article keyword',
-                suffixIcon: IconButton(
-                    onPressed: () => debugPrint(searchTextController.text),
-                    icon: const Icon(Icons.search)),
+    return BlocProvider(
+      create: (context) => SearchForNewsBloc(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 390.0, horizontal: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: TextField(
+                controller: SearchBar.searchTextController,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: 'Enter article keyword',
+                  suffixIcon:
+                      BlocBuilder<SearchForNewsBloc, SearchForNewsState>(
+                    builder: (context, state) {
+                      return IconButton(
+                          onPressed: () {
+                            SearchBar.searchTextController.text == ""
+                                ? debugPrint("Nothing inside")
+                                : context
+                                    .read<SearchForNewsBloc>()
+                                    .add(InputSearchList());
+                          },
+                          icon: const Icon(Icons.search));
+                    },
+                  ),
+                ),
                 //TODO: BUTTON PRESS FUNCTION IMPLEMENT
               ),
             ),
-          ),
-        ],
+            const VerticalList(),
+          ],
+        ),
       ),
     );
   }
