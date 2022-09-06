@@ -1,4 +1,4 @@
-import 'package:flutt_news/widgets/home.dart';
+import 'package:flutt_news/app.dart';
 import 'package:flutter/material.dart';
 
 class ArticlesScreen extends StatefulWidget {
@@ -131,14 +131,13 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
             child: FloatingActionButton(
               child: const Icon(Icons.arrow_back),
               onPressed: () {
-                print('Pressd!');
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const Home(),
-                //     //TODO: Fix this
-                //   ),
-                // );
+                // print('Pressd!');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const App(),
+                  ),
+                );
               },
             ),
           ),
