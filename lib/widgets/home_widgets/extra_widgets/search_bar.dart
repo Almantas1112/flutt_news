@@ -15,25 +15,6 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  // final SearchForNewsBloc _searchBloc = SearchForNewsBloc();
-
-  // @override
-  // void dispose() {
-  //   ApiSearchProvider().fetchSearchQuery();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   SearchBar.searchTextController
-  //       .addListener(() => SearchBar.searchTextController.text);
-  // }
-
-  // void _printLatestValue() {
-  //   print('Latest values is: ${SearchBar.searchTextController.text}');
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -57,7 +38,6 @@ class _SearchBarState extends State<SearchBar> {
                           onPressed: () {
                             SearchBar.searchTextController.text == ""
                                 ? debugPrint("Nothing inside")
-                                //TODO: Inform user
                                 : context
                                     .read<SearchForNewsBloc>()
                                     .add(InputSearchList());

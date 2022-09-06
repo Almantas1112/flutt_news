@@ -27,23 +27,7 @@ class _VerticalListState extends State<VerticalList> {
       child: BlocBuilder<SearchForNewsBloc, SearchForNewsState>(
         builder: (context, state) {
           if (state is SearchNewsInitial) {
-            return Container(
-              height: 500,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: <Widget>[
-                  Container(
-                    height: 200,
-                    color: Colors.purple[600],
-                    child: const Center(
-                        child: Text(
-                      'Item 1',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    )),
-                  ),
-                ],
-              ),
-            );
+            return Container();
           } else if (state is SearchNewsLoading) {
             return _findingResults(context);
           } else if (state is SearchNewsLoaded) {
