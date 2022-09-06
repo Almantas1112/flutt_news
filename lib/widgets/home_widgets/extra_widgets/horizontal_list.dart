@@ -2,6 +2,7 @@
 
 import 'package:flutt_news/bloc/news_bloc/news_bloc.dart';
 import 'package:flutt_news/models/newsResponse.dart';
+import 'package:flutt_news/widgets/articles_widgets/articles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -95,9 +96,18 @@ class _HorizontalListState extends State<HorizontalList> {
                     child: InkWell(
                       splashColor: Colors.blue.withAlpha(30),
                       onTap: () {
-                        debugPrint(
-                            'Card tapped: ${model.articles![index].title}');
-                        //TODO: Push to see full article
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ArticlesScreen(
+                              image: model.articles![index].urlToImage,
+                              title: model.articles![index].title,
+                              content: model.articles![index].content,
+                              author: model.articles![index].author,
+                              publishedAt: model.articles![index].publishedAt,
+                            ),
+                          ),
+                        );
                       },
                       child: Container(
                         margin: const EdgeInsets.only(top: 120),

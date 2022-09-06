@@ -57,6 +57,7 @@ class _SearchBarState extends State<SearchBar> {
                           onPressed: () {
                             SearchBar.searchTextController.text == ""
                                 ? debugPrint("Nothing inside")
+                                //TODO: Inform user
                                 : context
                                     .read<SearchForNewsBloc>()
                                     .add(InputSearchList());
@@ -65,7 +66,6 @@ class _SearchBarState extends State<SearchBar> {
                     },
                   ),
                 ),
-                //TODO: BUTTON PRESS FUNCTION IMPLEMENT
               ),
             ),
             const VerticalList(),

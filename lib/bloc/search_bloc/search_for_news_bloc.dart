@@ -25,9 +25,5 @@ class SearchForNewsBloc extends Bloc<SearchForNewsEvent, SearchForNewsState> {
         emit(const SearchError("Failed to fetch Data!"));
       }
     });
-    // on<InputSearch>((event, emit) {
-    //   final fQuery = SearchBar.searchTextController.text;
-    //   emit(SearchForNewsState(query: fQuery));
-    // });
   }
 }

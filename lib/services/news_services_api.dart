@@ -1,9 +1,8 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, prefer_final_fields, avoid_print
 
 import 'package:dio/dio.dart';
 import 'package:flutt_news/models/searchResponse.dart';
 import 'package:flutt_news/widgets/home_widgets/extra_widgets/search_bar.dart';
-import 'package:flutter/material.dart';
 
 import '../models/newsResponse.dart';
 

@@ -2,8 +2,8 @@
 
 import 'package:flutt_news/bloc/search_bloc/search_for_news_bloc.dart';
 import 'package:flutt_news/models/searchResponse.dart';
+import 'package:flutt_news/widgets/articles_widgets/articles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerticalList extends StatefulWidget {
@@ -76,8 +76,7 @@ Widget _foundBar(BuildContext context, SearchResponse model) {
     width: 350.0,
     child: ListView.builder(
       scrollDirection: Axis.vertical,
-      itemCount: 6,
-      //TODO: LIMITER
+      itemCount: model.articles!.length >= 6 ? 6 : model.articles!.length,
       itemBuilder: (context, index) {
         return Container(
           height: 200,
@@ -99,9 +98,18 @@ Widget _foundBar(BuildContext context, SearchResponse model) {
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
                     onTap: () {
-                      debugPrint(
-                          'Card tapped: ${model.articles![index].title}');
-                      //TODO: Push to see full article
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ArticlesScreen(
+                            image: model.articles![index].urlToImage,
+                            title: model.articles![index].title,
+                            content: model.articles![index].content,
+                            author: model.articles![index].author,
+                            publishedAt: model.articles![index].publishedAt,
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 140),
